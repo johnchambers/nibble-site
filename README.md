@@ -166,6 +166,39 @@ bundle exec nibble-site share-images      # 1200×630 sharing JPEGs in src/image
 GOOGLE_PLACES_API_KEY=... bundle exec nibble-site google-place-id "Name Town"
 ```
 
+## Deploying a site on Hatchbox
+
+One Hatchbox app per site: a Ruby (not Rails) app with a `Procfile`
+(`web: bundle exec puma -C config/puma.rb config.ru`), build command
+`bin/build`, health check `/up`. Hatchbox's Caddy serves `output/` and
+Puma answers the rest. The engine installs from this public repository,
+so no token is needed.
+
+| Variable | Preview | Live |
+|---|---|---|
+| `BRIDGETOWN_ENV`, `RACK_ENV` | `production` | `production` |
+| `SITE_URL` | the preview's address | not set (the site's default) |
+| `SITE_LIVE` | not set | `1` |
+| `SITE_CANONICAL_HOST` | not set | `www.<their domain>` |
+| `NIBBLE_API_URL` | only once the business's data in Nibble is real | `https://nibble.ie` |
+| `NIBBLE_BUSINESS` | not set if `business.yml`'s `slug` is right | the same |
+
+Things that have caught us out:
+
+- **A slug Nibble doesn't know stops the build** (the API answers 404),
+  by design. On a site's **first** deploy there's no earlier release to
+  fall back to, so nothing is served until a build passes. Check
+  `https://nibble.ie/api/v1/businesses/<slug>/locations` answers before
+  setting `NIBBLE_API_URL`.
+- **A new business in Nibble starts inactive**, and the API answers 404
+  for it until it's activated in Nibble's admin.
+- **The build publishes whatever Nibble has.** Check the business's
+  locations, hours, phone and menu in Nibble are real (not placeholders,
+  not a home address) before connecting a site to it. Until then the
+  site uses its own `src/_data/nibble/` files.
+- **Locally, Puma needs `tmp/pids/`** for its process file
+  (`mkdir -p tmp/pids`). Hatchbox makes it.
+
 ## Working on the engine
 
 ```sh
