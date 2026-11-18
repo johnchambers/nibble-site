@@ -1,0 +1,17 @@
+---
+permalink: /sitemap.xml
+sitemap: false
+---
+<%# Every page except those with `sitemap: false`. From the nibble_site engine. %>
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<% pages = site.resources.select { |r| r.relative_url.end_with?("/") && r.data.sitemap != false && !r.relative_url.start_with?("/404", "/500") }.sort_by(&:relative_url) %>
+<% pages.each do |r| %>
+  <url>
+    <loc><%= "#{site.config.url}#{r.relative_url}".sub(%r{(?<!:)/{2,}}, "/") %></loc>
+<% if r.data.date %>
+    <lastmod><%= r.data.date.to_date.iso8601 %></lastmod>
+<% end %>
+  </url>
+<% end %>
+</urlset>

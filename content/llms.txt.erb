@@ -1,0 +1,70 @@
+---
+permalink: /llms.txt
+sitemap: false
+---
+<%# A plain summary of the business for AI assistants (llmstxt.org), made
+    from the same data as the pages, so it never says anything the site
+    doesn't. From the nibble_site engine.
+
+    "Book us" lists each page with a `kind` in its front matter (weddings,
+    parties...) and the packages of that kind. %>
+<% b = site.data.nibble.business %>
+<% url = site.config.url %>
+<% service_pages = site.resources.select { |r| r.data.kind && r.data.title }.sort_by(&:relative_url) %>
+<% festivals_page = site.resources.find { |r| r.data.events_schema } %>
+<% menus = Array(site.data.nibble.menus) %>
+# <%== b.name %>
+
+> <%== site.metadata.description %>
+
+<%== [b.legal_name && b.legal_name != b.name ? b.legal_name : b.name, b.founded && "founded in #{b.founded}"].compact.join(", ") %>.<% if b.tagline %> <%== b.tagline %>.<% end %><% if Array(b.areas_served).any? %> We cover <%== areas_sentence %>.<% end %>
+
+## Where to find us
+<% if locations.empty? %>
+
+No regular locations at the moment.<% if festivals_page %> See our [festival dates](<%== url %><%== festivals_page.relative_url %>).<% end %>
+<% end %>
+<% locations.each do |l| %>
+
+- [<%== l.name %>](<%== url %><%== location_path(l) %>): <%== location_address_lines(l).join(", ") %>. <%== hours_summary(l).empty? ? "Hours to be announced" : "Open #{hours_summary(l)}" %>.<% if l.order_ahead %> Order ahead online: <%== location_order_url(l) %><% end %>
+<% end %>
+<% if service_pages.any? %>
+
+## Book us
+<% service_pages.each do |page| %>
+
+### [<%== page.data.title %>](<%== url %><%== page.relative_url %>)
+<% packages_for(page.data.kind).each do |p| %>
+- <%== p.name %>: <%== euro(p.from_price_cents, from: true) %><% if p.guests_up_to %>, for up to <%== p.guests_up_to %> guests<% end %>.<% if p.summary %> <%== p.summary %><% end %>
+<% end %>
+<% end %>
+<% end %>
+<% real_dates = upcoming_appearances.reject(&:sample) %>
+<% if real_dates.any? %>
+
+## Upcoming festivals
+<% real_dates.each do |a| %>
+- <%== a.name %><% if a.town %>, <%== a.town %><% end %>: <%== appearance_dates(a) %>
+<% end %>
+<% end %>
+<% if menus.any? %>
+
+## Menu
+<% menus.each do |m| %>
+- <%== m.name %>: <%== Array(m.categories).flat_map { |c| Array(c.items).reject { |i| i.available == false }.map { |i| "#{i.name} #{euro(i.price_cents)}" } }.join(", ") %>
+<% end %>
+<% end %>
+
+## Contact
+<% c = b.contact || {} %>
+
+<% if !NibbleSite::Places.blank?(b.order_url) || locations.any?(&:order_ahead) %>- Order online: <%== order_online_url %>
+<% end %><% if c["phone"] %>- Phone: <%== c["phone"] %>
+<% end %><% if c["email"] %>- Email: <%== c["email"] %>
+<% end %><% (b.social || {}).each do |network, link| %><% next if link.to_s.strip.empty? %>- <%== network.to_s.capitalize %>: <%== link %>
+<% end %>
+
+## Pages
+<% site.resources.select { |r| r.relative_url.end_with?("/") && r.data.sitemap != false && r.data.title && !r.data.location_slug && !r.relative_url.start_with?("/404", "/500") }.sort_by(&:relative_url).each do |r| %>
+- [<%== r.relative_url == "/" ? "Home" : r.data.title %>](<%== url %><%== r.relative_url %>)
+<% end %>

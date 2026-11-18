@@ -1,0 +1,9 @@
+---
+layout: default
+full_title: Example Pizza | Wood-Fired Pizza, Bray
+---
+<h1>Example Pizza</h1>
+<p>We cover <%= areas_sentence %>.</p>
+<% locations.each do |l| %>
+  <article class="location"><a href="<%= location_path(l) %>"><%= l.name %></a> <%= location_place(l) %> <%= hours_summary(l) %></article>
+<% end %>

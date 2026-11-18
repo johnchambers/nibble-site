@@ -1,0 +1,11 @@
+---
+layout: default
+title: Wedding Pizza
+description: Wood-fired pizza for your wedding guests, from our food truck.
+kind: wedding
+faqs:
+  - q: How many guests?
+    a: Up to 80, and more by arrangement.
+---
+<h1>Weddings</h1>
+<% packages_for("wedding").each do |p| %><p><%= p.name %>: <%= euro(p.from_price_cents, from: true) %></p><% end %>

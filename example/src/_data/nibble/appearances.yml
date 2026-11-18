@@ -1,0 +1,18 @@
+- name: Real Food Festival
+  town: Wicklow
+  county: Co. Wicklow
+  starts_on: 2099-06-05
+  ends_on: 2099-06-06
+  note: Two days of food.
+  url: null
+  order_ahead: false
+  sample: false
+- name: Made-up Fest
+  town: null
+  county: null
+  starts_on: 2099-07-01
+  ends_on: null
+  note: null
+  url: null
+  order_ahead: false
+  sample: true

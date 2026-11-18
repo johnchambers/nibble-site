@@ -1,0 +1,8 @@
+Gemfile.lock
+example/Gemfile.lock
+example/output
+example/.bridgetown-cache
+example/.bridgetown-metadata
+example/tmp
+*.gem
+.DS_Store

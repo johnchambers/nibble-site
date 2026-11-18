@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en-IE">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= nibble_head_tags(resource) %>
+  </head>
+  <body>
+    <nav>
+      <a href="/">Home</a>
+      <% site.data.navigation.to_a.each do |item| %>
+        <a href="<%= item.url %>"><%= item.label %></a>
+        <% nav_children(item).each do |kid| %><a href="<%= kid.url %>"><%= kid.label %></a><% end %>
+      <% end %>
+      <a href="<%= order_online_url %>">Order online</a>
+    </nav>
+    <main><%= yield %></main>
+  </body>
+</html>

@@ -1,0 +1,14 @@
+---
+permalink: /robots.txt
+sitemap: false
+---
+<%# Every crawler is welcome on the live site, AI crawlers included; a
+    preview turns them all away. From the nibble_site engine. %>
+User-agent: *
+<% if site.config.site_live %>
+Disallow:
+
+Sitemap: <%= site.config.url %>/sitemap.xml
+<% else %>
+Disallow: /
+<% end %>

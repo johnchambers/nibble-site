@@ -1,0 +1,8 @@
+---
+layout: default
+title: Menu
+description: Our wood-fired pizzas and dips, with prices.
+menu_schema: true
+---
+<h1>Menu</h1>
+<% site.data.nibble.menus.each do |m| %><h2><%= m.name %></h2><% end %>

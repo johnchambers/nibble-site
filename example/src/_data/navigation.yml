@@ -1,0 +1,5 @@
+- label: Find us
+  url: /locations/
+  with_locations: true
+- label: Menu
+  url: /menu/

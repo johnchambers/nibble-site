@@ -1,0 +1,14 @@
+---
+layout: default
+---
+<% location = locations.find { |l| l.slug == resource.data.location_slug } %>
+<h1><%= location.name %></h1>
+<p class="place"><%= location_place(location) %></p>
+<p class="hours"><%= hours_summary(location) %></p>
+<address><%= location_address_lines(location).join(", ") %></address>
+<a href="<%= location_maps_url(location) %>">Directions</a>
+<% if location.order_ahead %><a class="order" href="<%= location_order_url(location) %>">Order ahead</a><% end %>
+<% location_menus(location).each do |menu| %>
+  <h2><%= menu.name %></h2>
+  <% menu.categories.each do |c| %><% c.items.each do |i| %><p><%= i.name %> <%= euro(i.price_cents) %></p><% end %><% end %>
+<% end %>

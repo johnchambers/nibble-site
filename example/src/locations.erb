@@ -1,0 +1,7 @@
+---
+layout: default
+title: Where to find us
+description: Every place to find our pizza, with hours.
+---
+<h1>Where to find us</h1>
+<% locations.each do |l| %><p><a href="<%= location_path(l) %>"><%= l.name %></a></p><% end %>

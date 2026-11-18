@@ -1,0 +1,6 @@
+# The old website's addresses, to the pages that replaced them.
+pages:
+  page/about-us: /
+  products: /weddings/
+prefixes:
+  product/: /menu/

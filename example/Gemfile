@@ -1,0 +1,8 @@
+# An example site on the engine, for its tests and for trying changes.
+source "https://rubygems.org"
+
+gem "bridgetown", "~> 2.1.2"
+gem "puma", "< 8"
+gem "nibble_site", path: ".."
+# samovar >= 2.4.2 dropped the mapping/model base class that bridgetown-core 2.1.2 patches at load
+gem "samovar", "= 2.4.1"

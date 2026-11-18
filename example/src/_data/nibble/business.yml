@@ -1,0 +1,24 @@
+# A made-up business, for the engine's tests.
+slug: example-pizza
+name: Example Pizza
+legal_name: Example Pizza Limited
+founded: 2024
+tagline: Wood-fired pizza from a food truck
+cuisine: [Pizza, Italian]
+base:
+  town: Bray
+  county: Co. Wicklow
+  country: IE
+areas_served: [Wicklow, South Dublin]
+contact:
+  phone: "+353 1 555 0100"
+  whatsapp: "35315550100"
+  email: null
+social:
+  instagram: https://www.instagram.com/examplepizza/
+  facebook: null
+google_reviews:
+  count: 40
+  rating: null
+  url: https://www.google.com/search?q=Example+Pizza+reviews
+order_url: null

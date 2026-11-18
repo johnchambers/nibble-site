@@ -1,0 +1,8 @@
+---
+layout: default
+title: Festivals
+description: Where to find us at festivals.
+events_schema: true
+---
+<h1>Festivals</h1>
+<% upcoming_appearances.each do |a| %><p class="festival"><%= a.name %>: <%= appearance_dates(a) %></p><% end %>

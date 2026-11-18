@@ -1,0 +1,48 @@
+# Shaped as GET /api/v1/businesses/:slug/locations answers. The second is a
+# sample, left out on the live site; the third has nowhere to find it, so
+# it's always left out.
+- slug: bray-seafront
+  name: Bray Seafront
+  description: Weekend evenings on the seafront.
+  photo: null
+  photo_url: null
+  address: { line1: The Promenade, line2: null, city: Bray, county: CO WICKLOW, postcode: A98 XY12, country: IE }
+  latitude: 53.2
+  longitude: -6.1
+  phone: null
+  opening_hours:
+    friday: { open: "1", from: "17:00", to: "21:00" }
+    saturday: { open: "1", from: "12:00", to: "21:00" }
+    sunday: { open: "0", from: "", to: "" }
+  special_hours:
+    "2099-12-25": { closed: true, label: Christmas Day }
+  menus: [pizzas]
+  order_ahead: true
+- slug: greystones-harbour
+  name: Greystones Harbour
+  description: A sample location.
+  photo: null
+  photo_url: null
+  address: { line1: The Harbour, line2: null, city: Greystones, county: Co. Wicklow, postcode: null, country: IE }
+  latitude: null
+  longitude: null
+  phone: null
+  opening_hours:
+    saturday: { open: "1", from: "11:00", to: "17:00" }
+  special_hours: {}
+  menus: []
+  order_ahead: false
+  sample: true
+- slug: events-truck
+  name: Events Truck
+  description: null
+  photo: null
+  photo_url: null
+  address: { line1: null, line2: null, city: null, county: null, postcode: null, country: IE }
+  latitude: null
+  longitude: null
+  phone: null
+  opening_hours: {}
+  special_hours: {}
+  menus: []
+  order_ahead: true

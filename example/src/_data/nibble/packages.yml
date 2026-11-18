@@ -1,0 +1,10 @@
+- slug: wedding-pizza
+  name: Wedding Pizza Party
+  kind: [wedding]
+  from_price_cents: 95000
+  guests_up_to: 80
+  extra_guest_cents: 1200
+  summary: Pizza for your evening guests.
+  includes: [Pizza for up to 80 guests]
+  add_ons: []
+  small_print: null

@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+# Tools for a Nibble website, run from the site's folder:
+#
+#   nibble-site optimize-images     WebP variants of the photos in src/images/site,
+#                                   and src/_data/images.yml (needs cwebp and sips)
+#   nibble-site share-images        1200×630 JPEGs for sharing, in src/images/share
+#   nibble-site google-place-id "<name> <town>"
+#                                   the business's Google place ID, for GOOGLE_PLACE_ID
+COMMANDS = %w[optimize-images share-images google-place-id].freeze
+
+command = ARGV.shift
+unless COMMANDS.include?(command)
+  warn File.read(__FILE__).lines.drop(1).take_while { _1.start_with?("#") }.map { _1.sub(/^# ?/, "") }.join
+  exit(command.nil? || %w[-h --help help].include?(command) ? 0 : 1)
+end
+
+abort "Run this from a site's folder (no src/ here)." unless Dir.exist?("src") || command == "google-place-id"
+load File.expand_path("../lib/nibble_site/scripts/#{command.tr("-", "_")}.rb", __dir__)

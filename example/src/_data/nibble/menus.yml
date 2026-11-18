@@ -1,0 +1,12 @@
+- id: pizzas
+  name: Pizzas
+  description: Wood-fired, 12 inch.
+  categories:
+    - name: Pizzas
+      items:
+        - { name: Margherita, price_cents: 1200, description: Tomato, mozzarella, basil., dietary: [] }
+        - { name: Spicy salami, price_cents: 1500, description: null, dietary: [] }
+        - { name: Sold out special, price_cents: 9900, description: null, dietary: [], available: false }
+    - name: Dips
+      items:
+        - { name: Garlic dip, price_cents: 250, description: null, dietary: [] }
